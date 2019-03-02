@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="themejunky.com.interstitial">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <activity android:name="utill.LoadingProgressBarActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity android:name="utill.LoadingProgressBarFacebook"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity android:name="ads.ManagerInterstitialAds"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+    </application>
+
+</manifest>

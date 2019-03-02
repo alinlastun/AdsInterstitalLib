@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "themejunky.com.adsintertitiallibrary"
+        minSdkVersion 17
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        lintOptions {
+            abortOnError false
+            disable 'MissingTranslation'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    task wrapper(type: Wrapper) {
+        gradleVersion = '2.0'
+    }
+    signingConfigs {
+        bkt {
+            Properties props = new Properties()
+            props.load(new FileInputStream(file("../keystore/kplus4.properties")))
+            storeFile file(props['key.store'])
+            storePassword props['key.store.password']
+            keyAlias props['key.alias']
+            keyPassword props['key.alias.password']
+        }
+    }
+    productFlavors {
+        bkt_big_keyboardplus {
+            applicationId "com.keyboard.plus.theme.big"
+            versionCode 1
+            versionName '1.0.0'
+            signingConfig signingConfigs.bkt
+            flavorDimensions "default"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation project(':interstitial')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.facebook.android:audience-network-sdk:4.99.3'
+    //Admob
+    implementation "com.google.android.gms:play-services-ads:15.0.1"
+}
